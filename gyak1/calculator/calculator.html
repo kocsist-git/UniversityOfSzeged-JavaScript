@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <title>Számológép</title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 class="center" id="title">6. gyakorló feladatsor</h1>
+    <hr>
+    <!-- Szúrj be ide egy "" feliratú bekezdést, amely a class="center" attribútummal rendelkezik! -->
+    <p class="center">HTML, CSS és JavaScript alapok</p>
+    <div id="calculator">
+        <div class="grid">
+            <label for="num1">Első szám:</label>
+            <input type="number" id="num1">
+
+            <label for="op">Művelet:</label>
+            <input type="text" id="op">
+
+            <label for="num2">Második szám:</label>
+            <input type="number" id="num2">
+
+            <label></label>
+            <button onclick="calculate()">Számol!</button>
+        </div>
+    </div>
+
+    <div id="result" class="center"></div>
+
+    <div id="history" class="hidden">
+        <h2 class="center">Számítási előzmények</h2>
+        <table id="history-table"></table>
+        <button onclick="clearHistory()">Előzmények törlése</button>
+    </div>
+
+    <script>
+        // A weboldal kialakítását végző függvény
+
+        function setupSite() {
+            const data1 = document.getElementsByTagName("h1");
+            data1[0].innerHTML = 'Számológép';
+            const data2 = document.getElementsByClassName("center");
+            data2[1].classList.add("bold")
+        }
+
+        // Az űrlapon megadott művelet eredményét kiszámító és megjelenítő függvény
+
+        function calculate() {
+            const num1 = document.getElementById("num1").value
+            const num2 = document.getElementById("num2").value
+            const op = document.getElementById("op").value
+            if (num1 ==="" || num2 ===""  || op ==="" ){
+                alert("Anyad")
+            };
+            
+            // Itt majd meg kell hívni az addToHistory() függvényt a megfelelő paraméterekkel...
+        }
+
+        // A számítási előzményeket megjelenítő függvény
+
+        function addToHistory(num1, op, num2, result) {
+
+        }
+
+        // A számítási előzményeket törlő és elrejtő függvény
+
+        function clearHistory() {
+            
+        }
+
+        setupSite();
+    </script>
+</body>
+</html>
