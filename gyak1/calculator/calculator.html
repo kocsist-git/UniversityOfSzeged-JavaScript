@@ -42,32 +42,71 @@
             const data1 = document.getElementsByTagName("h1");
             data1[0].innerHTML = 'Számológép';
             const data2 = document.getElementsByClassName("center");
-            data2[1].classList.add("bold")
+            data2[1].classList.add("bold");
         }
 
         // Az űrlapon megadott művelet eredményét kiszámító és megjelenítő függvény
 
         function calculate() {
-            const num1 = document.getElementById("num1").value
-            const num2 = document.getElementById("num2").value
-            const op = document.getElementById("op").value
+            const num1 = document.getElementById("num1").value;
+            const num2 = document.getElementById("num2").value;
+            const op = document.getElementById("op").value;
+            let res;
             if (num1 ==="" || num2 ===""  || op ==="" ){
-                alert("Anyad")
+                alert("Minden mező kitöltése kötelező")
+            }else{
+                if (op == "+" || op == "-" || op =="*" || op=="/"){
+                    
+                    if (op == "+") res = Number(num1)+Number(num2) 
+                    if (op == "-") res = Number(num1)-Number(num2) 
+                    if (op == "*") res = Number(num1)*Number(num2) 
+                    if (op == "/") {
+                        if (num2 == "0"){
+                            alert("Nullával nem lehet osztani")
+                            res = "HIBA! Nullával osztás!"
+                        }else{
+                            res = Number(num1)/Number(num2) 
+                        }
+                    } 
+
+                }else{
+                    alert("A négy alapművelettől eltérő műveleti jelet adtál meg!");
+                }
             };
             
+            const result_ki = document.getElementById("result");
+            result_ki.innerText=res;
+
+            addToHistory(num1, op, num2, res)
             // Itt majd meg kell hívni az addToHistory() függvényt a megfelelő paraméterekkel...
         }
 
         // A számítási előzményeket megjelenítő függvény
 
         function addToHistory(num1, op, num2, result) {
+            const history_elem = document.getElementById("history");
+            history_elem.removeAttribute("class","hidden");
 
+            const history_table = document.getElementById("history-table")
+
+            const ujSor = document.createElement("tr")
+            const UjOszlop1 = document.createElement("td");
+            UjOszlop1.innerHTML=num1 + " " + op + " " + num2;
+            const UjOszlop2 = document.createElement("td");
+            UjOszlop2.innerText=result    
+            ujSor.append(UjOszlop1)  
+            ujSor.append(UjOszlop2)  
+            history_table.append(ujSor)
+            
         }
 
         // A számítási előzményeket törlő és elrejtő függvény
 
         function clearHistory() {
-            
+            const history_table = document.getElementById("history-table")
+            history_table.innerText=""
+            const history_elem = document.getElementById("history");
+            history_elem.setAttribute("class","hidden");
         }
 
         setupSite();
